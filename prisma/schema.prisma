@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  email    String @unique
+  username String
+  clerkId  String  @unique
+  hospitalId    String?       @db.ObjectId
+  appointmentId String?       @db.ObjectId
+  hospital      Hospital[]
+  appointments  Appointment[]
+}
+
+model Appointment {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt  DateTime? @default(now())
+  hospitalId String?   @db.ObjectId
+  hospital   Hospital? @relation(fields: [hospitalId], references: [id])
+  userId     String?   @db.ObjectId
+  doctorId   String?   @db.ObjectId
+  doctor     Doctor?   @relation(fields: [doctorId], references: [id])
+  status     String?
+  schedule   DateTime?
+  cancelled  Boolean?
+
+  user User? @relation(fields: [userId], references: [id])
+}
+
+model Hospital {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  address String
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
+
+  appointment Appointment[]
+  disease     Disease[]
+  doctor      Doctor[]
+}
+
+model Doctor {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  specialization String?
+
+  appointment Appointment[]
+  disease     Disease[]
+  hospitalId  String?       @db.ObjectId
+  hospital    Hospital?     @relation(fields: [hospitalId], references: [id])
+}
+
+model Disease {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+
+  doctorId   String?   @db.ObjectId
+  doctor     Doctor?   @relation(fields: [doctorId], references: [id])
+  Hospital   Hospital? @relation(fields: [hospitalId], references: [id])
+  hospitalId String?   @db.ObjectId
+}
