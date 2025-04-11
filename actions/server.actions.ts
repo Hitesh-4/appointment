@@ -1,5 +1,7 @@
 'use server'
 import prisma from "@/lib/prisma"
+import { useUser } from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 export const Allappointments = async (page: number ) => {
@@ -13,6 +15,12 @@ export const Allappointments = async (page: number ) => {
             createdAt: true,
             status: true,
             schedule:true,
+            email:true,
+            name:true,
+            message:true,
+            city:true,
+            gender:true,
+            phone:true,
             doctor: {
               select: {
                 id: true,
@@ -64,6 +72,7 @@ export const userAppointments = async (page: number ,   userId:string) => {
             createdAt: true,
             status: true,
             schedule:true,
+
             doctor: {
               select: {
                 id: true,
@@ -97,29 +106,35 @@ export const userAppointments = async (page: number ,   userId:string) => {
     } catch (error) {
       return { users: [], totalAppointments: 0 }; 
     }
-  };
-  
-
-
-export const createdAppointment = async ({doctorId , hospitalId , userId} :{doctorId : string , hospitalId :string , userId:string} ) => {
+};
+export const createdAppointment = async ({doctorId , hospitalId  , gender, city ,message , email ,phone, name } 
+  :{doctorId : string , hospitalId :string ,   gender:string , city:string, message:string ,phone:string , email:string , name :string} ) => {
     try {
-       
-      if(!doctorId && !hospitalId && !userId){
-        return {success : false}; 
-      } 
+       const user = await currentUser();
+
+       console.log('current user', user);
+      
         const appointment = await prisma.appointment.create({
             data: {
               hospitalId: hospitalId, 
-              userId: userId,
+              userId: user?.id ,
               doctorId: doctorId,
               status: 'pending',
               cancelled: false,
+              gender,
+              city   , 
+              message ,
+              email   ,
+              name   ,    
+              phone
             },
           });
  
+
+          console.log('appointment', appointment);
           return JSON.parse(JSON.stringify({success : true , id: appointment.id}));
-        
       } catch (error) {
+        console.log(error)
         return {success : false}; 
     }
 }
@@ -207,27 +222,21 @@ export const findSpecialization = async (id: string) => {
     }
 }
  
-export const scheduleAppointment = async ({ userId, appointmentId, schedule }: { appointmentId: string; userId: string; schedule: any }) => {
+export const scheduleAppointment = async ({ appointmentId, schedule }: { appointmentId: string; schedule: any }) => {
   try {
-    console.log(userId, schedule, appointmentId);
+    console.log( schedule, appointmentId);
 
     const appointment = await prisma.appointment.findUnique({
       where: { id: appointmentId },
     });
 
     if (!appointment) {
-      
       return;
     }
-
-    if (appointment.userId !== userId) { 
-      return;
-    }
-
+  
    const app =  await prisma.appointment.update({
       where: {
         id: appointmentId,
-        // userId: userId,
       },
       data: {
         status: 'Scheduled',

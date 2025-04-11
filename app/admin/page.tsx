@@ -34,7 +34,7 @@ async function AdminPage({searchParams}:{searchParams:{[key:string]:string|undef
   ])
   return (
     <>
-      <h1 className="text-4xl logo2 font-bold">Welcome, Admin</h1>
+      <h1 className="text-4xl bg-violet-500 logo2 font-bold">Welcome, Admin</h1>
 
       <div className="w-full flex max-md:flex-col max-lg:gap-3 justify-around mt-4">
         <div className="w-96 overflow-hidden relative frame footer2 border- shadow-xl shadow-[black] border-[#9e9e9e1f] max-md:w-full max-md:h-32 font-semibold flex flex-col justify-center pl-6 gap-5 bg-[#2d2b38] rounded-xl h-36">

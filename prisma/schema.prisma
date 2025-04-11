@@ -11,6 +11,7 @@ model User {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   email    String @unique
   username String
+  userId String? @unique
   clerkId  String  @unique
   hospitalId    String?       @db.ObjectId
   appointmentId String?       @db.ObjectId
@@ -23,14 +24,19 @@ model Appointment {
   createdAt  DateTime? @default(now())
   hospitalId String?   @db.ObjectId
   hospital   Hospital? @relation(fields: [hospitalId], references: [id])
-  userId     String?   @db.ObjectId
   doctorId   String?   @db.ObjectId
   doctor     Doctor?   @relation(fields: [doctorId], references: [id])
   status     String?
   schedule   DateTime?
   cancelled  Boolean?
-
-  user User? @relation(fields: [userId], references: [id])
+  gender   String?
+  city    String?
+  phone   String?
+  message String?
+  email   String?
+  name   String?
+  userId     String?  @unique
+  user User? @relation(fields: [userId], references: [userId])
 }
 
 model Hospital {

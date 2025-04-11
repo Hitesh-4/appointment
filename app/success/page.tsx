@@ -2,6 +2,7 @@
 'use client';
 import { findAppointment } from '@/actions/server.actions';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { GoHourglass } from 'react-icons/go';
@@ -48,6 +49,9 @@ function Successpage() {
         <div className=' rounded-xl footer2  px-6 py-2'>{data?.doctor?.name}</div>
         <p>{data?.createdAt ? new Intl.DateTimeFormat("en-IN").format(new Date(data.createdAt)) : ''}</p>
       </div>
+
+    <Link href={'/appointment'} className=''>Back</Link>
+
     </div>
   );
 } 

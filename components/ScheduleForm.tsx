@@ -14,12 +14,10 @@ function ScheduleForm({data ,setOpen}:any) {
     const router = useRouter()
 
   const sumbitAppointment = async (e:any) => {
-    e.preventDefault();
-
-    const userId = data.user.id
+    e.preventDefault(); 
     const appointmentId = data.id
     const schedule = startDate
-    await scheduleAppointment({ userId , appointmentId , schedule })
+    await scheduleAppointment({ appointmentId , schedule })
      
     router.refresh()
     setOpen(false)

@@ -6,7 +6,11 @@ body{
   @apply text-gray-200 bg-[#140e1a];
 }
 
-.inshadow{
+/* body {
+  @apply bg-white
+}  */
+
+ .inshadow{
   box-shadow: inset 0 0 10px #ffffff1c;
 }
 .frame {

@@ -12,7 +12,7 @@ import { redirect } from "next/navigation";
     const {page } = searchParams; 
     const p = page ?parseInt(page): 1;  
     const user = await currentUser();
-    const userId  = user?.publicMetadata.userId as string;    
+    const userId  = user?.id!;
     const app = await userAppointments(p ,userId ) 
 
     function formatDate(dateStr: Date): string {
