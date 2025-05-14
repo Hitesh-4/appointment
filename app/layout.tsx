@@ -5,7 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Appointments",
+  title: "MediBook",
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
         <body className=" relative ">
           <Navbar />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </body>
       </html>
     </ClerkProvider>

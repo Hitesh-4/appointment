@@ -1,8 +1,7 @@
  
-import { userAppointments } from "@/actions/server.actions"
+import { userAppointments } from "@/backend/server.actions"
 import Pagination from "@/components/Pagenation"; 
-import { useAuth, useUser } from "@clerk/nextjs";
-import { auth, currentUser } from "@clerk/nextjs/server"; 
+import { currentUser } from "@clerk/nextjs/server"; 
 import { GoHourglass } from "react-icons/go";
 import { MdDone } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx"; 

@@ -1,6 +1,6 @@
 "use client";
 
-import {createdAppointment,findSpecialization,} from "@/actions/server.actions";
+import {createdAppointment,findSpecialization,} from "@/backend/server.actions";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -55,10 +55,10 @@ function Appointments({
   return (
     <div className=" w-full h-[86vh] flex  rounded-2xl overflow-x-hidden max-md:flex-col">
       <form
-        className=" flex w-[66%] max-md:p-7  p-20 pl-24 flex-col gap-5 footer2 max-md:w-full mx-auto "
+        className=" flex w-[66%] max-md:p-7  p-20 pl-24 flex-col gap-5  max-md:w-full mx-auto "
         onSubmit={handleSubmit}
       >
-        <h1 className=" text-4xl font-semibold logo2 ">Create Appointment</h1>
+        <h1 className=" text-4xl font-semibold  ">Create Appointment</h1>
         <div className=" mt-2">
           <h1>Select Hospital</h1>
           <select
@@ -68,6 +68,7 @@ function Appointments({
             name="hospital"
             value={hospitalId}
           >
+            <option value=" ">Select Hospital</option>
             {hospital.map(({ id, name }) => (
               <option className=" bg-[#0f0a13]" key={id} value={id}>
                 {name}
@@ -85,6 +86,7 @@ function Appointments({
               className="bg-transparent w-full max-md:[90%] p-2 px-3 outline-none cursor-pointer"
               name="spcial"
             >
+              <option value="" className=" text-black">Select Department</option>
               {special &&
                 special.map((item: any) => {
                   return (
@@ -108,6 +110,7 @@ function Appointments({
               className="bg-transparent w-full max-md:w-[90%] outline-none cursor-pointer rounded-lg p-2 px-3"
               name="doctor"
             >
+              <option value="">Select a doctor</option>
               {!special && !hospitalId && (
                 <option className=" bg-[#0f0a13]" value="">
                   Select a doctor

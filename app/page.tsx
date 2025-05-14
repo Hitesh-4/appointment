@@ -25,44 +25,51 @@ export default function Home() {
 
   const doctors = [
     {
-      name: "Dr. Paradox Alex",
-      specialty: "Skin Specialist",
+      name: "Dr. Sangeeta Agarwal",
       img: "/doc1.jpg",
+      // medical: "MBBS, MD (Dermatology)",
+      specialty: "Dermatologist",
+      hospital: "Manipal Hospital",
     },
     {
-      name: "Dr. Jane Smith",
+      name: "Dr. R. K. Anand",
       specialty: "Cardiologist",
       img: "/doc2.jpg",
+      hospital: "KIMS Hospital",
     },
-    { name: "Dr. John Doe", specialty: "Neurologist", img: "/doc3.jpg" },
+    { name: "Dr. Y. K. Amdekar", specialty: "Neurologist", img: "/doc3.jpg", hospital: "Apollo Hospital" },
     {
-      name: "Dr. Emily Clark",
+      name: "Dr. K. Srinivasan",
       specialty: "Pediatrician",
       img: "/doc4.jpg",
+      hospital: "Utkal Hospital",
     },
     {
-      name: "Dr. Michael Brown",
+      name: "Dr. Arvinder Singh Soin",
       specialty: "Orthopedic",
       img: "/doc5.jpg",
+      hospital: "Care Hospital",
     },
     {
-      name: "Dr. Sarah Wilson",
-      specialty: "Dermatologist",
+      name: "Dr. Kamini Rao",
+      specialty: "Gynecologist", 
       img: "/doc6.jpg",
+      hospital: "Kalinga Hospital",
     },
     {
-      name: "Dr. David Lee",
+      name: "Dr. Rashmi Shetty",
       specialty: "Endocrinologist",
       img: "/doc7.jpg",
+      hospital: "AIIMS BBSR",
     },
-    { name: "Dr. Laura Adams", specialty: "Oncologist", img: "/doc8.jpg" },
+    { name: "Dr. Kaushal Malhan", specialty: "Oncologist", img: "/doc8.jpg", hospital: "SCB Medical College, Cuttack" },
   ];
 
   
   
 
   return (
-    <main className=" w-full max-lg:flex-col max-lg:gap-8  max-lg:px-0 mt-6">
+    <main className=" w-full max-lg:flex-col max-lg:gap-8  max-lg:px-0 mt-6 overflow-hidden">
       {/* Img  */}
       <div className=" w-full h-[60vh] relative">
         <Image
@@ -78,10 +85,10 @@ export default function Home() {
       <div className="container relative h-[80vh] overflow-hidden mx-auto px-4 flex flex-col md:flex-row md:items-center">
         {/* Left Section */}
         <div className="md:w-1/2 items-center">
-          <h1 className="text-5xl font-extrabold text-blue-900 mb-4 ml-28">
+          <h1 className="text-5xl font-extrabold text-blue-500 mb-4 ml-10">
             Short Story About Our Hospital
           </h1>
-          <p className="text-gray-700 mb-4 ml-20 text-xl font-serif">
+          <p className="text-gray-400 mb-4 ml-20 text-xl font-serif">
             The seeds of our origin were sown as early as 1953 when the founder
             of the Manipal Education and Medical Group (MEMG), Dr. T.M.A. Pai,
             established the Kasturba Medical College in Manipal, Karnataka.
@@ -90,7 +97,7 @@ export default function Home() {
             Bangalore. Today, we are one of India's leading healthcare groups
             with over 10500 beds across 37 hospitals.
           </p>
-          <p className="text-gray-700 mb-6 ml-20 text-xl font-serif">
+          <p className="text-gray-400 mb-6 ml-20 text-xl font-serif">
             Our core values are built around the thought of patient-first and
             that each doctor at Manipal Hospitals is a human care expert, going
             above and beyond the call of duty as they live by the belief that
@@ -99,7 +106,7 @@ export default function Home() {
             Join us on a journey to discover stories that reinforce your belief
             in 'Life's On'.
           </p>
-          <Link href="/appointment" className="bg-blue-900 text-white px-10 py-5 text-xl rounded-lg font-semibold hover:bg-blue-800 mb-6 ml-20">
+          <Link href="/find" className="bg-blue-900 text-white px-10 py-5 text-xl rounded-lg font-semibold hover:bg-blue-800 mb-6 ml-20">
             Find a Doctor
           </Link>
         </div>
@@ -147,6 +154,8 @@ export default function Home() {
                     {doctor.name}
                   </h3>
                   <p className="text-gray-600">{doctor.specialty}</p>
+                  {/* <p className="text-gray-600">{doctor.medical}</p> */}
+                  <p className=" text-gray-600">{doctor.hospital}</p>
                 </div>
               </div>
             </div>
@@ -209,12 +218,11 @@ export default function Home() {
       <div className="flex items-center relative justify-center h-[70vh] -mt-16 w-full  ">
         <div className=" rounded-lg p-4 w-full flex">
           {/* Map Section */}
-          <div className="w-[60%] mt-20  h-[60vh] overflow-hidden !rounded-2xl ">
+          <div className=" w-[89%] h-[60vh] rounded-lg mt-14 items-center justify-center">
             <iframe
               title="Google Map"
-              className="w-full rounded-lg p-5 h-full"
+              className=" rounded-lg p-5 h-full w-[70%] "
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4072.2673784966714!2d85.80522357558887!3d20.340361581142297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19091d551a38c7%3A0xd2f96c2eaee7b45f!2sTrident%20Academy%20of%20Creative%20Technology%2C%20near%20Trident%2C%20Infocity%2C%20Chandrasekharpur%2C%20Bhubaneswar%2C%20Odisha%20751024!5e1!3m2!1sen!2sin!4v1742995257725!5m2!1sen!2sin"
-              // allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
@@ -252,44 +260,6 @@ export default function Home() {
         </div>
       </div>
       <div className="w-full border border-gray-200  mx-3 "></div>
-
-      
-
-
-      {/* <div className=" max-md:px-4 max-lg:px-6 ">
-        <h1 className=" text-4xl font-semibold logo2">
-          {role && role === "admin"
-            ? "Hii Admin , welcome back"
-            : "create appointment in just simple steps."}
-        </h1>
-        {user ? (
-          <>
-            {role && role === "admin" ? (
-              <Link
-                className=" border-2 border-[#ffffff30] inshadow footer2 max-lg:mt-6 mt-10 block rounded-xl w-fit px-7 py-2 "
-                href={"/admin"}
-              >
-                Go to admin dashboard
-              </Link>
-            ) : (
-              <Link
-                className=" border-2 border-[#ffffff30] inshadow footer2 max-lg:mt-6 mt-10 block rounded-xl w-fit px-7 py-2 "
-                href={"/appointment"}
-              >
-                Create Appoinment
-              </Link>
-            )}
-          </>
-        ) : (
-          <Link
-            className=" border-2 border-[#ffffff30] inshadow footer2 max-lg:mt-6 mt-10 block rounded-xl w-fit px-7 py-2 "
-            href={"/sign-in"}
-          >
-            Login
-          </Link>
-        )}
-      </div> */}
     </main>
   );
-
 }

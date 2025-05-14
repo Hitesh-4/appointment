@@ -1,6 +1,6 @@
 'use client'
 
-import { scheduleAppointment } from "@/actions/server.actions";
+import { scheduleAppointment } from "@/backend/server.actions";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";

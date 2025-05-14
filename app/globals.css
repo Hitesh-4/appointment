@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+/* body{
   @apply text-gray-200 bg-[#140e1a];
-}
+} */
 
-/* body {
-  @apply bg-white
-}  */
+body {
+  @apply bg-white text-gray-700 dark:bg-gray-900 dark:text-gray-200;
+} 
 
  .inshadow{
   box-shadow: inset 0 0 10px #ffffff1c;
@@ -57,7 +57,7 @@ body{
 
 
 
-
+/* 
 .cl-internal-1p733cp   {
   @apply bg-[#191120] text-zinc-100 !important;
   background: linear-gradient(317deg, #9a83d3 -164%, #080312 91%) !important;
@@ -106,7 +106,7 @@ body{
 }
 .cl-internal-1dauvpw{
   display: none;
-}
+} */
 
 body::-webkit-scrollbar{
   width: 0;

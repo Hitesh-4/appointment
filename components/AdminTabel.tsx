@@ -50,20 +50,20 @@ function AdminTabel({ users ,count ,page }: userProps) {
                 new Date(item.createdAt)
               )}
             </p>
-            <p className={`${item.status.toLowerCase() === 'scheduled' ? 'text-[#24ae7c] bg-[#0d2a1f]' : item.status.toLowerCase() === 'pending' ? 'bg-[#152432] text-[#79b5ec]' : 'bg-[#3e1716] text-[#f37877]'} w-fit max-md:px-1 max-md:text-xs px-3 py-[2px] flex items-center gap-1 rounded-2xl`}  >
+            <p className={`${item.status.toLowerCase() === 'scheduled' ? 'text-[#24ae7c] bg-[#0d2a1f]' : item.status.toLowerCase() === 'pending' ? 'bg-[#152432] text-[#79b5ec]' : 'bg-[#3e1716] text-[#f37877]'} w-fit max-md:px-1 max-md:text-xs px-3 py-[2px] text-sm flex items-center gap-1 rounded-2xl`}  >
             {item.status.toLowerCase() === 'scheduled' ? <MdDone /> : item.status.toLowerCase() === 'pending' ? <GoHourglass /> : <RxCross2 /> }
               {item?.status}</p>
 
             <p className=" line-clamp-1">{item.doctor.name}</p>
             <p>{item.gender}</p>
-            <p>{item.email}</p>
-            <p className=" line-clamp-1">{item.phone}</p>
+            <p className="  pr-9">{item.email}</p>
+            <p className=" line-clamp-2 pl-7">{item.phone}</p>
 
             {item.schedule ? (
               <p>{new Intl.DateTimeFormat("en-IN").format(new Date(item.schedule))}</p>
             ) : (
               <p
-                className="cursor-pointer flex items-center gap-2 max-md:gap-1 px-3 max-md:px-1 max-md:text-sm py-1 w-fit rounded-lg text-[#24ae7c] bg-[#0d2a1f]"
+                className="cursor-pointer flex items-center gap-2 max-md:gap-1 px-3 max-md:px-1 max-md:text-sm py-1 w-fit rounded-lg text-[#24ae7c] bg-[#0d2a1f] text-sm"
                 onClick={() => setOpenScheduleId(openScheduleId === item.id ? null : item.id)}
               >
                 <IoIosTimer className=" text-lg"/>

@@ -1,6 +1,5 @@
- 
 'use client';
-import { findAppointment } from '@/actions/server.actions';
+import { findAppointment } from '@/backend/server.actions';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -50,7 +49,7 @@ function Successpage() {
         <p>{data?.createdAt ? new Intl.DateTimeFormat("en-IN").format(new Date(data.createdAt)) : ''}</p>
       </div>
 
-    <Link href={'/appointment'} className=''>Back</Link>
+    <Link href={'/'} className=''>Back</Link>
 
     </div>
   );

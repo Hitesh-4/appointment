@@ -12,11 +12,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { userId: clerkUserId , sessionClaims } = await auth(); 
+  const user = await currentUser(); 
  
-  console.log(sessionClaims)
+  console.log(user?.publicMetadata.role)
   
-  if(clerkUserId === 'user_2vJvDtH6WdjjXpMjQyFiBeINjTc'){
+  if(user?.publicMetadata.role === 'admin'){
       return (
       <main>
         <div className=" px-2 mt-10 max-md:px-2 max-lg:px-3">

@@ -35,7 +35,7 @@ model Appointment {
   message String?
   email   String?
   name   String?
-  userId     String?  @unique
+  userId     String?
   user User? @relation(fields: [userId], references: [userId])
 }
 

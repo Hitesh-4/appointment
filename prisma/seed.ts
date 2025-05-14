@@ -47,37 +47,37 @@ async function main() {
   );
 
   // Create sample users
-  // const users = await Promise.all(
-  //   Array.from({ length: 9 }, (_, index) =>
-  //     prisma.user.create({
-  //       data: {
-  //         email: `user${index + 1}@example.com`,
-  //         username: `user${index + 1}`,
-  //         clerkId:`user${index+2}`,
-  //         hospitalId: hospitals[index % hospitals.length].id,
-  //       },
-  //     })
-  //   )
-  // );
+  const users = await Promise.all(
+    Array.from({ length: 9 }, (_, index) =>
+      prisma.user.create({
+        data: {
+          email: `user${index + 1}@example.com`,
+          username: `user${index + 1}`,
+          clerkId:`user${index+2}`,
+          hospitalId: hospitals[index % hospitals.length].id,
+        },
+      })
+    )
+  );
 
   // Create sample appointments
-  // const appointments = await Promise.all(
-  //   users.flatMap((user, index) =>
-  //     Array.from({ length: 2 }, (_, apptIndex) =>
-  //       prisma.appointment.create({
-  //         data: {
-  //           createdAt: new Date(),
-  //           hospitalId: hospitals[index % hospitals.length].id,
-  //           userId: user.id,
-  //           doctorId: doctors[index % doctors.length].id,
-  //           status: apptIndex % 2 === 0 ? 'Scheduled' : 'Cancelled',
-  //           schedule: new Date(Date.now() + (apptIndex + 1) * 86400000), // 1 or 2 days later
-  //           cancelled: apptIndex % 2 === 1,
-  //         },
-  //       })
-  //     )
-  //   )
-  // );
+  const appointments = await Promise.all(
+    users.flatMap((user, index) =>
+      Array.from({ length: 2 }, (_, apptIndex) =>
+        prisma.appointment.create({
+          data: {
+            createdAt: new Date(),
+            hospitalId: hospitals[index % hospitals.length].id,
+            userId: user.id,
+            doctorId: doctors[index % doctors.length].id,
+            status: apptIndex % 2 === 0 ? 'Scheduled' : 'Cancelled',
+            schedule: new Date(Date.now() + (apptIndex + 1) * 86400000), // 1 or 2 days later
+            cancelled: apptIndex % 2 === 1,
+          },
+        })
+      )
+    )
+  );
 
   console.log('Seed data created:');
   // console.log({ hospitals, doctors, diseases, users, appointments });

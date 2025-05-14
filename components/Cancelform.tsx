@@ -1,4 +1,5 @@
-import { CancelAppointment } from '@/actions/server.actions'
+'use client'    
+import { CancelAppointment } from '@/backend/server.actions'
 import { useRouter } from 'next/navigation'
 import { RxCross2 } from 'react-icons/rx';
 
@@ -7,13 +8,14 @@ function Cancelform({data ,setOpen}:any) {
   const router  = useRouter()
     const sumbitCancelForm = async (e:any) => {
       e.preventDefault();
-      const userId = data.user.id
       const appointmentId = data.id 
-      await CancelAppointment({ userId , appointmentId })
+      await CancelAppointment({ appointmentId })
       
       router.refresh()
       setOpen(false)
     }
+
+    console.log(data)
   return (
     <div className=' fixed bg-[#00000027] backdrop-blur-[5px] w-full flex items-center justify-center  left-0 top-0 h-screen  z-20'>
             <form onSubmit={sumbitCancelForm} className="flex-col footer2 flex inshadow px-10  justify-center gap-4 backdrop-blur-[20px] rounded-lg bg-[#140e1a1d] w-[40%] max-lg:w-[66%] max-md:w-[86%] max-md:h-[49%]  h-5/6 ">
